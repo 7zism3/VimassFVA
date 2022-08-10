@@ -33,40 +33,29 @@ namespace VimassFVA
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btn_luuKM = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lb_thongBao = new System.Windows.Forms.Label();
+            this.btn_dangKy = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txt_soVi = new System.Windows.Forms.TextBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.btn_luuDacTrungGiongNoi = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_xacThuc = new System.Windows.Forms.Button();
             this.btn_khoiDongCamera = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.lb_ketQuaDangKiKhuonMat = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.lb_ketQuaDangKiKhuonMat);
-            this.panel1.Controls.Add(this.btn_luuKM);
-            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.lb_thongBao);
+            this.panel1.Controls.Add(this.btn_dangKy);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.txt_soVi);
-            this.panel1.Controls.Add(this.pictureBox2);
-            this.panel1.Controls.Add(this.btn_luuDacTrungGiongNoi);
-            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.btn_xacThuc);
             this.panel1.Controls.Add(this.btn_khoiDongCamera);
@@ -74,35 +63,36 @@ namespace VimassFVA
             this.panel1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(904, 707);
+            this.panel1.Size = new System.Drawing.Size(760, 802);
             this.panel1.TabIndex = 0;
             // 
-            // btn_luuKM
+            // lb_thongBao
             // 
-            this.btn_luuKM.Location = new System.Drawing.Point(28, 264);
-            this.btn_luuKM.Name = "btn_luuKM";
-            this.btn_luuKM.Size = new System.Drawing.Size(122, 46);
-            this.btn_luuKM.TabIndex = 13;
-            this.btn_luuKM.Text = "Đăng kí khuôn mặt";
-            this.btn_luuKM.UseVisualStyleBackColor = true;
-            this.btn_luuKM.Click += new System.EventHandler(this.btn_dangKiKhuonMat_Click);
+            this.lb_thongBao.AutoSize = true;
+            this.lb_thongBao.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_thongBao.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lb_thongBao.Location = new System.Drawing.Point(36, 127);
+            this.lb_thongBao.Name = "lb_thongBao";
+            this.lb_thongBao.Size = new System.Drawing.Size(124, 23);
+            this.lb_thongBao.TabIndex = 16;
+            this.lb_thongBao.Text = "thông báo nè";
             // 
-            // label6
+            // btn_dangKy
             // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.Red;
-            this.label6.Location = new System.Drawing.Point(23, 551);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(95, 13);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Không thành công";
+            this.btn_dangKy.Location = new System.Drawing.Point(134, 737);
+            this.btn_dangKy.Name = "btn_dangKy";
+            this.btn_dangKy.Size = new System.Drawing.Size(122, 51);
+            this.btn_dangKy.TabIndex = 13;
+            this.btn_dangKy.Text = "Đăng kí khuôn mặt";
+            this.btn_dangKy.UseVisualStyleBackColor = true;
+            this.btn_dangKy.Click += new System.EventHandler(this.btn_dangKiKhuonMat_Click);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(192, 166);
+            this.panel2.Location = new System.Drawing.Point(41, 199);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(672, 518);
             this.panel2.TabIndex = 11;
@@ -118,66 +108,26 @@ namespace VimassFVA
             this.pictureBox1.Size = new System.Drawing.Size(640, 484);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseLeave += new System.EventHandler(this.pictureBox1_MouseLeave);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
             this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(24, 521);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(94, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Kết quả xác thực: ";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 180);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.MediumBlue;
+            this.label4.Location = new System.Drawing.Point(502, 31);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(33, 13);
+            this.label4.Size = new System.Drawing.Size(211, 17);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Số ví";
+            this.label4.Text = "Bạn đang xác thực với tư cách số ví:";
             // 
             // txt_soVi
             // 
-            this.txt_soVi.Location = new System.Drawing.Point(28, 214);
+            this.txt_soVi.Location = new System.Drawing.Point(540, 51);
             this.txt_soVi.Name = "txt_soVi";
-            this.txt_soVi.Size = new System.Drawing.Size(139, 20);
+            this.txt_soVi.Size = new System.Drawing.Size(124, 20);
             this.txt_soVi.TabIndex = 8;
             this.txt_soVi.Text = "0357897375";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::VimassFVA.Properties.Resources.voice_recognition_icon_154433;
-            this.pictureBox2.Location = new System.Drawing.Point(610, 27);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(53, 56);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 7;
-            this.pictureBox2.TabStop = false;
-            // 
-            // btn_luuDacTrungGiongNoi
-            // 
-            this.btn_luuDacTrungGiongNoi.ForeColor = System.Drawing.Color.MediumBlue;
-            this.btn_luuDacTrungGiongNoi.Location = new System.Drawing.Point(742, 27);
-            this.btn_luuDacTrungGiongNoi.Name = "btn_luuDacTrungGiongNoi";
-            this.btn_luuDacTrungGiongNoi.Size = new System.Drawing.Size(122, 56);
-            this.btn_luuDacTrungGiongNoi.TabIndex = 5;
-            this.btn_luuDacTrungGiongNoi.Text = "Lưu đặc trưng giọng nói";
-            this.btn_luuDacTrungGiongNoi.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(38, 116);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(455, 26);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "* Tuân thủ các quy định của nhà nước về quyền bảo mật thông tin. \r\nVimass tuyệt đ" +
-    "ối không gửi bất kì dữ liệu khuôn mặt hay giọng nói nào của quý khách ra ngoài!";
             // 
             // label2
             // 
@@ -192,17 +142,18 @@ namespace VimassFVA
             // btn_xacThuc
             // 
             this.btn_xacThuc.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.btn_xacThuc.Location = new System.Drawing.Point(27, 431);
+            this.btn_xacThuc.Location = new System.Drawing.Point(476, 737);
             this.btn_xacThuc.Name = "btn_xacThuc";
             this.btn_xacThuc.Size = new System.Drawing.Size(122, 51);
             this.btn_xacThuc.TabIndex = 2;
             this.btn_xacThuc.Text = "Xác thực";
             this.btn_xacThuc.UseVisualStyleBackColor = true;
+            this.btn_xacThuc.Click += new System.EventHandler(this.btn_xacThuc_Click);
             // 
             // btn_khoiDongCamera
             // 
             this.btn_khoiDongCamera.ForeColor = System.Drawing.Color.MediumBlue;
-            this.btn_khoiDongCamera.Location = new System.Drawing.Point(742, 97);
+            this.btn_khoiDongCamera.Location = new System.Drawing.Point(591, 127);
             this.btn_khoiDongCamera.Name = "btn_khoiDongCamera";
             this.btn_khoiDongCamera.Size = new System.Drawing.Size(122, 51);
             this.btn_khoiDongCamera.TabIndex = 1;
@@ -221,19 +172,11 @@ namespace VimassFVA
             this.label1.Text = "Vimass";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lb_ketQuaDangKiKhuonMat
-            // 
-            this.lb_ketQuaDangKiKhuonMat.AutoSize = true;
-            this.lb_ketQuaDangKiKhuonMat.Location = new System.Drawing.Point(28, 329);
-            this.lb_ketQuaDangKiKhuonMat.Name = "lb_ketQuaDangKiKhuonMat";
-            this.lb_ketQuaDangKiKhuonMat.Size = new System.Drawing.Size(0, 13);
-            this.lb_ketQuaDangKiKhuonMat.TabIndex = 14;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(925, 727);
+            this.ClientSize = new System.Drawing.Size(782, 861);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
@@ -243,7 +186,6 @@ namespace VimassFVA
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -255,17 +197,12 @@ namespace VimassFVA
         private System.Windows.Forms.Button btn_xacThuc;
         private System.Windows.Forms.Button btn_khoiDongCamera;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btn_luuDacTrungGiongNoi;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox txt_soVi;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btn_luuKM;
-        private System.Windows.Forms.Label lb_ketQuaDangKiKhuonMat;
+        private System.Windows.Forms.Button btn_dangKy;
+        private System.Windows.Forms.Label lb_thongBao;
     }
 }
 
