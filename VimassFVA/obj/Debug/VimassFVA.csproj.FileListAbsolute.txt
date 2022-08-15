@@ -20,6 +20,7 @@ E:\Code\WinForm\VS\VimassFVA\VimassFVA\bin\Debug\VimassFVA.pdb
 E:\Code\WinForm\VS\VimassFVA\VimassFVA\obj\Debug\VimassFVA.exe
 E:\Code\WinForm\VS\VimassFVA\VimassFVA\obj\Debug\VimassFVA.pdb
 E:\Code\WinForm\VS\VimassFVA\VimassFVA\obj\Debug\VimassFVA.Main.resources
-E:\Code\WinForm\VS\VimassFVA\VimassFVA\obj\Debug\VimassFVA.Inputname.resources
 E:\Code\WinForm\VS\VimassFVA\VimassFVA\bin\Debug\FaceSDK.NET.dll
 E:\Code\WinForm\VS\VimassFVA\VimassFVA\obj\Debug\VimassFVA.csproj.CopyComplete
+E:\Code\WinForm\VS\VimassFVA\VimassFVA\bin\Debug\Newtonsoft.Json.dll
+E:\Code\WinForm\VS\VimassFVA\VimassFVA\bin\Debug\Newtonsoft.Json.xml

@@ -108,7 +108,6 @@ namespace VimassFVA
             this.pictureBox1.Size = new System.Drawing.Size(640, 484);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // label4
             // 

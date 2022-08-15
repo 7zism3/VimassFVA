@@ -1,11 +1,8 @@
 ﻿using Luxand;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,11 +11,8 @@ namespace VimassFVA
 {
     public partial class Main : Form
     {
-        // program states: whether we recognize faces, or user has clicked a face
-        enum ProgramState { psRemember, psRecognize }
-        ProgramState programState = ProgramState.psRecognize;
-        static string path = "C:\\Users\\welcome\\Documents\\Vimass\\dataFAV.txt";
-        static string pathSoVi = "C:\\Users\\welcome\\Documents\\Vimass\\dataViFAV.txt";
+        static string path = "D:\\Vimass\\dataFAV.txt";
+        static string pathSoVi = "D:\\Vimass\\dataViFAV.txt";
 
         bool needClose = false;
         String cameraName;
@@ -33,11 +27,11 @@ namespace VimassFVA
         static bool daDocThongTinTuFile = false;
 
         int soLanXacThuc;
+        static String KEYMD5 = "jdsf8weur93r93jr30r0wffk2";
 
         public Main()
         {
             InitializeComponent();
-
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -78,8 +72,9 @@ namespace VimassFVA
         {
             try
             {
-                template_FromFile = File.ReadAllBytes(path);
-                soVi_FromFile = File.ReadAllText(pathSoVi);
+                soVi_FromFile = docThongTin(pathSoVi);
+                string temp = docThongTin(path, soVi_FromFile);
+                template_FromFile = Encoding.UTF8.GetBytes(temp);
                 if (soVi_FromFile.CompareTo(soVi) == 0) 
                 {
                     if (template_FromFile == null || template_FromFile == new byte[FSDK.TemplateSize])
@@ -108,6 +103,18 @@ namespace VimassFVA
                 }
                 
             }
+            catch (System.IO.DirectoryNotFoundException e)
+            {
+                string directoryPath = "D:\\Vimass";
+                DirectoryInfo directory = new DirectoryInfo(directoryPath);
+                directory.Create();
+                directory.Attributes = FileAttributes.Hidden;
+                btn_dangKy.Enabled = true;
+                btn_xacThuc.Enabled = false;
+                daDocThongTinTuFile = false;
+                lb_thongBao.Text = "\"Số ví không có dữ liệu khuôn mặt\nVui lòng đăng ký thông tin\"";
+                lb_thongBao.ForeColor = System.Drawing.Color.Red;
+            }
             catch (Exception e)
             {
                 btn_dangKy.Enabled = true;
@@ -116,6 +123,7 @@ namespace VimassFVA
                 lb_thongBao.Text = "\"Số ví không có dữ liệu khuôn mặt\nVui lòng đăng ký thông tin\"";
                 lb_thongBao.ForeColor = System.Drawing.Color.Red;
             }
+            
         }
 
         private void btn_khoiDongCamera_Click(object sender, EventArgs e)
@@ -240,11 +248,6 @@ namespace VimassFVA
             }
         }
 
-        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
-        {
-            programState = ProgramState.psRemember;
-        }
-
         private void btn_dangKiKhuonMat_Click(object sender, EventArgs e)
         {
             dangKy();
@@ -271,8 +274,9 @@ namespace VimassFVA
                     FSDK.GetFaceTemplate(image_Global, out template_Global);
                     try
                     {
-                        File.WriteAllBytes(path, template_Global);
-                        File.WriteAllText(pathSoVi, soVi);
+                        luuThongTin(path, template_Global, pathSoVi, soVi);
+                        template_FromFile = template_Global;
+                        daDocThongTinTuFile = true;
                         lb_thongBao.Text = "\"Đăng kí khuôn mặt thành công" +
                               "\r\nCho số ví: " + soVi + "\"";
                         lb_thongBao.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -297,6 +301,8 @@ namespace VimassFVA
         }
         private void xacThuc()
         {
+
+            lb_thongBao.Text = "\"\"";
             if (soLanXacThuc < 3)
             {
                 int res2 = FSDK.DetectFace(image_Global, ref facePosition_Global);
@@ -326,9 +332,10 @@ namespace VimassFVA
                             {
                                 lb_thongBao.Text = "\"Xác thực khuôn mặt thành công!\"";
                                 lb_thongBao.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+                                soLanXacThuc = 0;
                                 // Lưu dữ liệu khuôn mặt mới vào file
-                                File.WriteAllBytes(path, template_Global);
-                                File.WriteAllText(pathSoVi, soVi);
+                                luuThongTin(path, template_Global, pathSoVi, soVi);
+                                guiThongTinLenServer(soVi, 1);
                             }
                             else
                             {
@@ -344,7 +351,41 @@ namespace VimassFVA
             {
                 lb_thongBao.Text = "\"Bạn đã xác thực quá 3 lần, Vui lòng thử lại sau\"";
                 lb_thongBao.ForeColor = System.Drawing.Color.Red;
+                guiThongTinLenServer(soVi, -1);
             }
         }
+
+        private void guiThongTinLenServer(string soVi, int identity)
+        {
+            IdentityFVA identityFVA = new IdentityFVA();
+            identityFVA.identity = identity;
+            identityFVA.soVi = soVi;
+            identityFVA.checksum = MaHoaDuLieu.getMD5(soVi + identity + KEYMD5);
+            var json = JsonConvert.SerializeObject(identityFVA);
+            Service.SendWebrequest_POST_Method(json);
+        }
+
+        private void luuThongTin(string path, byte[] template_Global, string pathSoVi, string soVi)
+        {
+            string soVi_MaHoa = MaHoaDuLieu.maHoa(soVi);
+            File.WriteAllText(pathSoVi, soVi_MaHoa);
+
+            string temp = Encoding.ASCII.GetString(template_Global);
+            string template_Global_MaHoa = MaHoaDuLieu.maHoa(temp, soVi);
+            File.WriteAllText(path, template_Global_MaHoa);
+        }
+
+        private String docThongTin(string path)
+        {
+            string temp = File.ReadAllText(path);
+            return MaHoaDuLieu.giaiMa(temp);
+        }
+        private String docThongTin(string path, string key)
+        {
+            string temp = File.ReadAllText(path);
+            return MaHoaDuLieu.giaiMa(temp, key);
+        }
+
+
     }
 }
