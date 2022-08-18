@@ -9,9 +9,7 @@ namespace VimassFVA
 	internal class IdentityFVA
 	{
 		public String soVi;
-		public long time;
 		public int identity;
 		public String checksum;
-		public int count;
 	}
 }

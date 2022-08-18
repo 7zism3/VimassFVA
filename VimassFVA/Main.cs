@@ -1,11 +1,14 @@
 ﻿using Luxand;
 using Newtonsoft.Json;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace VimassFVA
 {
@@ -66,6 +69,8 @@ namespace VimassFVA
             pictureBox1.Width = formatList[VideoFormat].Width;
             pictureBox1.Height = formatList[VideoFormat].Height;
             lb_thongBao.Text = "";
+           // khoiDongCamera();
+           // btn_khoiDongCamera.PerformClick();
         }
 
         private void LoadDataFromFile()
@@ -193,6 +198,7 @@ namespace VimassFVA
                     Pen pen;
                     string value;
                     float liveness = 0;
+                    isLiveness = false;
 
                     int res = FSDK.GetTrackerFacialAttribute(tracker, cameraHandle, IDs[i], "Liveness", out value, 1024);
                     if (res == FSDK.FSDKE_OK)
@@ -224,6 +230,7 @@ namespace VimassFVA
                         brush, facePosition.xc, top + w + 5, format);
                     gr.DrawRectangle(pen, left, top, w, w);
                 }
+
                 /*if (soLanXacThuc < 5)
                 {
                     DoSomethingEverySeconds();
@@ -336,6 +343,8 @@ namespace VimassFVA
                                 // Lưu dữ liệu khuôn mặt mới vào file
                                 luuThongTin(path, template_Global, pathSoVi, soVi);
                                 guiThongTinLenServer(soVi, 1);
+                                needClose = true;
+                                Chrome(soVi);
                             }
                             else
                             {
@@ -386,6 +395,32 @@ namespace VimassFVA
             return MaHoaDuLieu.giaiMa(temp, key);
         }
 
+        private static void Chrome(string link)
+        {
+            string url = "";
+
+            if (!string.IsNullOrEmpty(link)) //if empty just run the browser
+            {
+                if (link.Contains('.')) //check if it's an url or a google search
+                {
+                    url = link;
+                }
+                else
+                {
+                    url = "https://www.google.com/search?q=" + link.Replace(" ", "+");
+                }
+            }
+
+            try
+            {
+                Process.Start("chrome.exe", url + " --incognito");
+            }
+            catch (System.ComponentModel.Win32Exception e)
+            {
+                MessageBox.Show("Unable to find Google Chrome...",
+                    "chrome.exe not found!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
     }
 }
